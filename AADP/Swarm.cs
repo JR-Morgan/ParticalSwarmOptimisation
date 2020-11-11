@@ -13,7 +13,7 @@ namespace AADP
         private Terminate terminate;
         private AntennaArray antenna;
 
-        public Swarm(AntennaArray antenna, Terminate terminalCondition, uint numberOfParticles)
+        public Swarm(int dimensions, AntennaArray antenna, Terminate terminalCondition, uint numberOfParticles)
         {
             particles = new LinkedList<Particle>();
             this.terminate = terminalCondition;
@@ -25,7 +25,7 @@ namespace AADP
                 
 
                 particles.AddLast(new Particle(
-                    velocity: Vector.LinierRandom(2, 0, 0.1),
+                    dimentions: dimensions,
                     costFunction: ParticleCost,
                     initalise: (IInitalise)new RandomInitalise()
                     ));

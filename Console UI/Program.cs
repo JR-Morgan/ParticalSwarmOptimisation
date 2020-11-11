@@ -9,14 +9,18 @@ namespace Console_UI
 
         static void Main(string[] args)
         {
-            int numberOfAntenae = 3;
-            AntennaArray antenna = new AntennaArray(numberOfAntenae, 90);
-            Swarm swarm = new Swarm(antenna, TerminateConditions.TimeOut(5000), (uint)(20 + Math.Sqrt(numberOfAntenae)));
+            Log log = PSO(3, 90, TerminateConditions.FixedItterations(100));
+            Console.WriteLine(log.ToString());        }
 
-            Log result = swarm.StartPSO();
 
-            Console.WriteLine(result.ToString()); 
-                
+        private static Log PSO(int numberOfAntenae, int steeringAngle, Terminate t)
+        {
+            AntennaArray antenna = new AntennaArray(numberOfAntenae, steeringAngle);
+            Swarm swarm = new Swarm(numberOfAntenae - 1, antenna, t, (uint)(20 + Math.Sqrt(numberOfAntenae)));
+
+            return swarm.StartPSO();
+
+            
         }
     }
 }

@@ -1,10 +1,30 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AADP
 {
     struct Vector : IEnumerable
     {
+
+        public static double[] ToDesign(Vector position)
+        {
+            List<double> d = new List<double>(position.Values)
+            {
+                (position.Count + 1d) / 2d
+            };
+            return d.ToArray();
+        }
+
+        public static Vector FromDesign(double[] design)
+        {
+            var temp = design.SkipLast(1).ToArray();
+            return new Vector() { Values = temp };
+        }
+
+
+
         public static Vector Zero(int dimensions) => new Vector() { Values = new double[dimensions] };
         private static Random random = new Random();
         public static int Seed { set => random = new Random(value); }
@@ -45,7 +65,7 @@ namespace AADP
             return new Vector() { Values = values };
         }
 
-        public static Vector LinierRandom(int dimensions, Vector lowerBound, Vector upperBound)
+        public static Vector LinearRandom(int dimensions, Vector lowerBound, Vector upperBound)
         {
             double[] values = new double[dimensions];
             for (int i = 0; i < dimensions; i++)
@@ -55,7 +75,7 @@ namespace AADP
             return new Vector() { Values = values };
         }
 
-        public static Vector LinierRandom(int dimensions, double lowerBound, double upperBound)
+        public static Vector LinearRandom(int dimensions, double lowerBound, double upperBound)
         {
             double[] values = new double[dimensions];
             for (int i = 0; i < dimensions; i++)
