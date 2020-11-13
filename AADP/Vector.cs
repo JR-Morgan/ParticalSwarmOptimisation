@@ -7,12 +7,12 @@ namespace AADP
 {
     struct Vector : IEnumerable
     {
-
+        public double Limit => (this.Count + 1d) / 2d;
         public static double[] ToDesign(Vector position)
         {
             List<double> d = new List<double>(position.Values)
             {
-                (position.Count + 1d) / 2d
+                position.Limit
             };
             return d.ToArray();
         }
@@ -48,7 +48,7 @@ namespace AADP
 
             for (int i=0; i<dimensions; i++)
             {
-                values[i] = NextNormalRandom() * (upperBound[i] - lowerBound[i]) + upperBound[i];
+                values[i] = NextNormalRandom() * (upperBound[i] - lowerBound[i]) + lowerBound[i];
             }
 
             return new Vector() { Values = values };
@@ -59,7 +59,7 @@ namespace AADP
 
             for (int i = 0; i < dimensions; i++)
             {
-                values[i] = NextNormalRandom() * (upperBound - lowerBound) + upperBound;
+                values[i] = NextNormalRandom() * (upperBound - lowerBound) + lowerBound;
             }
 
             return new Vector() { Values = values };
@@ -70,7 +70,7 @@ namespace AADP
             double[] values = new double[dimensions];
             for (int i = 0; i < dimensions; i++)
             {
-                values[i] = (random.NextDouble() * (upperBound[i] - lowerBound[i])) + upperBound[i];
+                values[i] = (random.NextDouble() * (upperBound[i] - lowerBound[i])) + lowerBound[i];
             }
             return new Vector() { Values = values };
         }
@@ -80,7 +80,7 @@ namespace AADP
             double[] values = new double[dimensions];
             for (int i = 0; i < dimensions; i++)
             {
-                values[i] = (random.NextDouble() * (upperBound - lowerBound)) + upperBound;
+                values[i] = (random.NextDouble() * (upperBound - lowerBound)) + lowerBound;
             }
             return new Vector() { Values = values };
         }

@@ -10,7 +10,7 @@ namespace Console_UI
         static void Main(string[] args)
         {
             Log log = PSO(3, 90, TerminateConditions.FixedItterations(100));
-            Console.WriteLine(log.ToString());        }
+            Console.WriteLine(log.ToString());}
 
 
         private static Log PSO(int numberOfAntenae, int steeringAngle, Terminate t)
@@ -19,8 +19,6 @@ namespace Console_UI
             Swarm swarm = new Swarm(numberOfAntenae - 1, antenna, t, (uint)(20 + Math.Sqrt(numberOfAntenae)));
 
             return swarm.StartPSO();
-
-            
         }
     }
 }

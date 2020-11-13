@@ -26,14 +26,12 @@ namespace AADP
 
                 particles.AddLast(new Particle(
                     dimentions: dimensions,
-                    costFunction: ParticleCost,
-                    initalise: (IInitalise)new RandomInitalise()
+                    costFunction: antenna.Evaluate,
+                    initalise: new RandomInitalise()
                     ));
 
             }
         }
-
-        private double ParticleCost(double[] design) => antenna.Evaluate(design);
 
         public Log StartPSO()
         {

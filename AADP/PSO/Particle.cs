@@ -52,34 +52,42 @@ namespace AADP.PSO
         private void EvaluateCost()
         {
             double cost = costFunction(Design);
-
+            string s() => $"{Math.Round(Position.Values[0], 3)}, {Math.Round(Position.Values[1], 3)} - {cost}";
+            
+            
             if (cost < PersonalBestCost)
             {
                 PersonalBest = Position;
                 PersonalBestCost = cost;
-
+                
+                //Console.WriteLine("PB: " + cost);
                 if (cost < GlobalBestCost)
                 {
-                    Console.WriteLine(cost);
+                    Console.Write("GB: " + s());
+                    //Console.WriteLine("GB: " + cost);
                     GlobalBest = Position;
                     GlobalBestCost = cost;
                 }
-            }
+                else
+                {
+                    Console.Write("PB: " + s());
+                }
+            } else Console.Write("NP: " + s());
+            Console.Write("\n");
 
-           
+
         }
 
         private void UpdatePosition()
         {
-            
             Position += Velocity;
         }
 
         private void UpdateVelocity()
         {
-            Vector r1 = Vector.NormalRandom(Velocity.Count),
-                   r2 = Vector.NormalRandom(Velocity.Count);
-            Velocity = InertialCoefficient * Velocity + CognativeCoefficient * r1 * ( PersonalBest - Position) + SocialCoefficient * r2 - (GlobalBest - Position);
+            Vector r1 = Vector.LinearRandom(Velocity.Count, 0, 1),
+                   r2 = Vector.LinearRandom(Velocity.Count, 0, 1);
+            Velocity = InertialCoefficient * Velocity + CognativeCoefficient * r1 * ( PersonalBest - Position) + SocialCoefficient * r2 * (GlobalBest - Position);
         }
     }
 }
