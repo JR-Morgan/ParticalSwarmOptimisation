@@ -4,6 +4,9 @@ using System.Text;
 
 namespace AADP
 {
+    /// <summary>
+    /// Encapsulates the results of the particle search
+    /// </summary>
     public struct Log
     {
         public double GlobalBestCost;

@@ -5,6 +5,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 	<nullable>enable</nullable>
     <RootNamespace>Console_UI</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>JRMKey.pfx</AssemblyOriginatorKeyFile>
+    <Version>0.1.0</Version>
+    <Company />
+    <Authors>Jedd Morgan</Authors>
+    <Product>AADP</Product>
+    <PackageProjectUrl>https://github.com/JR-Morgan/ParticalSwarmOptimisation</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JR-Morgan/ParticalSwarmOptimisation.git</RepositoryUrl>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>

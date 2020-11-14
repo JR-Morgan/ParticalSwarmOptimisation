@@ -42,6 +42,9 @@ namespace AADP.PSO
             EvaluateCost();
         }
 
+        /// <summary>
+        /// Updates the particle to the next simulation tick.
+        /// </summary>
         public void Update()
         {
             UpdateVelocity();

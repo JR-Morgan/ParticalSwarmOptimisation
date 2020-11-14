@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
 	<nullable>enable</nullable>
+	<Version>0.1.0</Version>
+	<Authors>Jedd Morgan</Authors>
+	<Company />
+	<PackageProjectUrl>https://github.com/JR-Morgan/ParticalSwarmOptimisation</PackageProjectUrl>
+	<RepositoryType></RepositoryType>
+	<RepositoryUrl>https://github.com/JR-Morgan/ParticalSwarmOptimisation.git</RepositoryUrl>
+	<Copyright>Jedd Morgan</Copyright>
+	<SignAssembly>true</SignAssembly>
+	<AssemblyOriginatorKeyFile>JRMKey.pfx</AssemblyOriginatorKeyFile>
+	<NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
 
 </Project>

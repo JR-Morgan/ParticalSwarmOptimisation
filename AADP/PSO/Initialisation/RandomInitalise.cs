@@ -8,7 +8,11 @@ namespace AADP.PSO.Initalisaion
         private static Random random = new Random();
         public static int Seed { set => random = new Random(value); }
 
-
+        /// <summary>
+        /// Returns a randomly generated valid design
+        /// </summary>
+        /// <param name="numberOfAntennae"></param>
+        /// <returns></returns>
         public double[] Initalise(int numberOfAntennae)
         {
             

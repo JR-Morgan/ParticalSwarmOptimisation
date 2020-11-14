@@ -5,9 +5,18 @@ using System.Linq;
 
 namespace AADP
 {
+    /// <summary>
+    /// Encapsulates a N dimensional vector
+    /// </summary>
     struct Vector : IEnumerable
     {
         public double Limit => (this.Count + 1d) / 2d;
+
+        /// <summary>
+        /// Converts a Vector position into an antenna design
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public static double[] ToDesign(Vector position)
         {
             List<double> d = new List<double>(position.Values)
@@ -17,6 +26,11 @@ namespace AADP
             return d.ToArray();
         }
 
+        /// <summary>
+        /// Converts a design into a position vector
+        /// </summary>
+        /// <param name="design">the design to be converted</param>
+        /// <returns>a vector with data from <paramref name="design"/></returns>
         public static Vector FromDesign(double[] design)
         {
             var temp = design.SkipLast(1).ToArray();
@@ -42,29 +56,51 @@ namespace AADP
             return mean + stdDev * randStdNormal;
         }
 
-        public static Vector NormalRandom(int dimensions, Vector lowerBound, Vector upperBound)
+        /// <summary>
+        /// Generates a random vector position using normally distributed 
+        /// </summary>
+        /// <param name="dimensions">The number of dimensions</param>
+        /// <param name="upper">The upper standard deviation of the values generated</param>
+        /// <param name="lower">The lower standard deviation of the values generated</param>
+        /// <returns>A random vector</returns>
+        public static Vector NormalRandom(int dimensions, Vector lower, Vector upper)
         {
             double[] values = new double[dimensions];
 
             for (int i=0; i<dimensions; i++)
             {
-                values[i] = NextNormalRandom() * (upperBound[i] - lowerBound[i]) + lowerBound[i];
+                values[i] = NextNormalRandom() * (upper[i] - lower[i]) + lower[i];
             }
 
             return new Vector() { Values = values };
         }
-        public static Vector NormalRandom(int dimensions, double lowerBound = -0.5, double upperBound = +0.5)
+
+        /// <summary>
+        /// Generates a random vector position using normally distributed 
+        /// </summary>
+        /// <param name="dimensions">The number of dimensions</param>
+        /// <param name="upper">The upper standard deviation of the values generated</param>
+        /// <param name="lower">The lower standard deviation of the values generated</param>
+        /// <returns>A random vector</returns>
+        public static Vector NormalRandom(int dimensions, double lower = -0.5, double upper = +0.5)
         {
             double[] values = new double[dimensions];
 
             for (int i = 0; i < dimensions; i++)
             {
-                values[i] = NextNormalRandom() * (upperBound - lowerBound) + lowerBound;
+                values[i] = NextNormalRandom() * (upper - lower) + lower;
             }
 
             return new Vector() { Values = values };
         }
 
+        /// <summary>
+        /// Generates a random vector position using uniform distributed 
+        /// </summary>
+        /// <param name="dimensions">The number of dimensions</param>
+        /// <param name="lowerBound">The upper bound of the values generated</param>
+        /// <param name="upperBound">The lower bound of the values generated</param>
+        /// <returns></returns>
         public static Vector LinearRandom(int dimensions, Vector lowerBound, Vector upperBound)
         {
             double[] values = new double[dimensions];
@@ -75,6 +111,13 @@ namespace AADP
             return new Vector() { Values = values };
         }
 
+        /// <summary>
+        /// Generates a random vector position using uniform distributed 
+        /// </summary>
+        /// <param name="dimensions">The number of dimensions</param>
+        /// <param name="lowerBound">The upper bound of the values generated</param>
+        /// <param name="upperBound">The lower bound of the values generated</param>
+        /// <returns></returns>
         public static Vector LinearRandom(int dimensions, double lowerBound, double upperBound)
         {
             double[] values = new double[dimensions];
